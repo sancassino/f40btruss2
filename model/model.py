@@ -3,7 +3,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
 import transformers
 from typing import Dict, List
 
-CHECKPOINT = "tiiuae/falcon-40b"
+CHECKPOINT = "tiiuae/falcon-40b-instruct"
 DEFAULT_MAX_LENGTH = 128
 DEFAULT_TOP_P = 0.95
 
