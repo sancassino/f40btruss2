@@ -2,7 +2,7 @@
 
 This repository packages [Falcon-40B](https://huggingface.co/tiiuae/falcon-40b) as a [Truss](https://truss.baseten.co).
 
-Falcon 40B is an LLM released by Technology Innovation Institute (TTI). It is general-purpose LLM with benchmarks that
+Falcon 40B is an LLM released by Technology Innovation Institute (TII). It is general-purpose LLM with benchmarks that
 compare to GPT-3.5.
 
 Utilizing this model for inference can be challenging given the hardware requirements. With Baseten and Truss, inference is dead simple.
