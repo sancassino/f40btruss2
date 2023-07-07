@@ -29,8 +29,6 @@ requirements:
 - einops
 - git+https://github.com/huggingface/transformers.git
 - spacy
-- spacy-model-en_core_web_sm
-- spacy-model-es_core_news_sm
 - transformers
 resources:
   cpu: "3"
