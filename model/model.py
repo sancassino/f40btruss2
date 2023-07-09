@@ -1,12 +1,8 @@
 import torch
-import spacy
-from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
 import transformers
-from typing import Dict, List
+from typing import Dict
 
 CHECKPOINT = "tiiuae/falcon-40b-instruct"
-DEFAULT_MAX_LENGTH = 128
-DEFAULT_TOP_P = 0.95
 
 class Model:
     def __init__(self, data_dir: str, config: Dict, secrets: Dict, **kwargs) -> None:
@@ -17,7 +13,7 @@ class Model:
         self.pipeline = None
 
     def load(self):
-        self.tokenizer = AutoTokenizer.from_pretrained(CHECKPOINT)
+        self.tokenizer = transformers.AutoTokenizer.from_pretrained(CHECKPOINT)
         self.pipeline = transformers.pipeline(
             "text-generation",
             model=CHECKPOINT,
@@ -27,17 +23,17 @@ class Model:
             device_map="auto",
         )
 
-
-    def predict(self, request: Dict) -> Dict:
+    def generate_response(self, prompt: str) -> str:
         with torch.no_grad():
             try:
-                prompt = request.pop("prompt")
                 data = self.pipeline(
                     prompt,
                     eos_token_id=self.tokenizer.eos_token_id,
-                    **request
+                    do_sample=True,
+                    max_new_tokens=300
                 )[0]
-                return {"data": data}
+                return data["generated_text"]
 
             except Exception as exc:
-                return {"status": "error", "data": None, "message": str(exc)}
+                return str(exc)
+
