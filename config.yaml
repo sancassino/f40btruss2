@@ -28,7 +28,6 @@ requirements:
 - bitsandbytes
 - einops
 - git+https://github.com/huggingface/transformers.git
-- spacy
 - transformers
 resources:
   cpu: "3"
